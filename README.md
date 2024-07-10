@@ -1,4 +1,4 @@
 Short software tutorials
 ------------------------
 
-The tutorials in the `short_tutorials` folder span a range of topics, mostly in the form of Jupyter notebooks. 
+This repo collects brief tutorials on a range of software development topics. The `short_tutorials` folder contains these, often in the form of Jupyter notebooks. 
