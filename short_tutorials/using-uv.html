@@ -316,9 +316,6 @@ uv run script.py
 # Run a module
 uv run -m pytest
 
-# Execute a package (like pipx)
-uvx ruff check .
-
 # Run inline script with dependencies
 uv run --with requests python -c \
 "
@@ -326,6 +323,8 @@ import requests as r
 print(r.get('https://api.github.com').json())
 "
 
+# Execute a package (like pipx)
+uvx ruff check .
                 </code></pre>
             </section>
 
