@@ -78,7 +78,7 @@
                     <li>Written in 🦀 Rust by Astral (creators of Ruff)</li>
                     <li>Replaces pip, pip-tools, pipx, poetry, pyenv, virtualenv, and more</li>
                     <li><strong>10-100x faster</strong> than pip for package installation</li>
-                    <li>Guarantees reproducible installations</li>
+                    <li>Strives for reproducible installations</li>
                     <li>Solves the Python packaging problem 👀</li>
                 </ul>
             </section>
@@ -94,7 +94,7 @@
                 <h3>Smart Package Caching with Symlinks</h3>
                 <ul>
                     <li><code>uv</code> maintains a <strong>global package cache</strong></li>
-                    <li>Uses <strong>symbolic links</strong> to existing installations when constraints match</li>
+                    <li>Uses <strong>hard links</strong> to existing installations when constraints match</li>
                     <li>Creating a new venv with the same packages? Nearly instant!</li>
                     <li>Storage overhead? Essentially zero for duplicate packages</li>
                 </ul>
@@ -117,13 +117,13 @@
 
             <!-- Slide 14: Learning from History -->
             <section>
-                <h2>Learning from History: The Conda Situation</h2>
+                <h2>Learning from History</h2>
                 <ul>
-                    <li>Conda and pip were (rightly) constrained by wanting to avoid breaking changes</li>
+                    <li><code>conda</code> tried to solve a different problem to <code>pip</code></li>
+                    <li>Both were (rightly) constrained by wanting to avoid breaking changes</li>
                     <li>Stifled innovation, in part Python is not a good tool to manage Python</li>
-                    <li>Conda caused community friction with licensing concerns</li>
-                    <li>Users worried about potential license infringement issues</li>
-                    <li><strong>uv has a different approach...</strong></li>
+                    <li><code>conda</code> caused community friction with licensing concerns</li>
+                    <li><code>uv</code> has a different approach...</li>
                 </ul>
             </section>
 
@@ -147,7 +147,7 @@
                 <h2>Why Use <code>uv</code>?</h2>
                 <ul>
                     <li>⚡ <strong>It's quick</strong>: 10<sup>1</sup>-10<sup>6</sup> times faster than other tools</li>
-                    <li>🔒 <strong>Reproducible</strong>: Lock files ensure consistency</li>
+                    <li>🔒 <strong>Reproducible</strong>: Lock files help with consistency</li>
                     <li>🛠️ <strong>All-in-one</strong>: Replaces multiple tools</li>
                     <li>🐍 <strong>Python management</strong>: Install and manage Python versions</li>
                     <li>📦 <strong>Modern workflow</strong>: Built for common setups</li>
@@ -196,7 +196,7 @@
                         <tr>
                             <td>Run tools</td>
                             <td>pipx</td>
-                            <td>uv tool run</td>
+                            <td>uvx run</td>
                             <td>Faster</td>
                         </tr>
                     </tbody>
@@ -224,15 +224,15 @@ brew install uv
 
             <!-- Slide 4: Creating a Virtual Environment -->
             <section>
-                <h2>Creating a Virtual Environment</h2>
-                <p>Create and activate a virtual environment:</p>
+                <h2>Create a Virtual Environment</h2>
+                <p>Create a virtual environment:</p>
                 <pre><code class="language-bash" data-trim>
-# Create a virtual environment
-uv venv
+> uv venv
 
-# Activate it
-source .venv/bin/activate  # macOS/Linux
-.venv\Scripts\activate     # Windows
+# uv will detect and use this environment
+> uv pip install numpy
+
+> uv run python
                 </code></pre>
                 <p class="small-text"><code>uv</code> automatically detects and uses the virtual environment</p>
             </section>
@@ -263,11 +263,8 @@ uv pip install "django>=4.0,<5.0"
 # List available Python versions
 uv python list
 
-# Install a specific Python version
-uv python install 3.12
-
-# Use a specific Python version
-uv venv --python 3.12
+# Create a venv with a specific Python version
+uv venv -p 3.14
 
 # uv auto-installs missing Python versions as needed
                 </code></pre>
@@ -294,8 +291,8 @@ uv sync
 
             <!-- Slide 8: Lock Files -->
             <section>
-                <h2>Reproducible Builds</h2>
-                <p><code>uv</code> creates lock files for precise dependency resolution</p>
+                <h2>Version Pinning</h2>
+                <p><code>uv</code> creates lock files to avoid version mis-matches</p>
                 <pre><code class="language-bash" data-trim>
 # Generate/update lock file
 uv lock
@@ -305,7 +302,8 @@ uv sync
 
 # This ensures everyone gets the same dependencies!
                 </code></pre>
-                <p class="small-text">Unlike pip, <code>uv</code> guarantees reproducible installations</p>
+                <p class="small-text">This <strong>doesn't</strong> guarantee reproducible installations, but it does
+                    minimise chances of version mis-matches.</p>
             </section>
 
             <!-- Slide 9: Running Scripts -->
@@ -319,7 +317,7 @@ uv run script.py
 uv run -m pytest
 
 # Execute a package (like pipx)
-uv tool run ruff check .
+uvx ruff check .
 
 # Run inline script with dependencies
 uv run --with requests python -c \
@@ -349,8 +347,7 @@ print(r.get('https://api.github.com').json())
                        ||----w |
                        ||     ||
                                         </code></pre>
-                <p class="small-text"><code>uv</code> creates a temporary venv, installs the package, and runs it
-                    automatically!</p>
+                <p class="small-text"><code>uv</code> creates a temporary venv, installs the package, and runs it!</p>
             </section>
 
 
@@ -433,14 +430,14 @@ uv tree
                 <h2>On My Laptop: Science Projects</h2>
 
                 <pre><code class="language-bash" data-trim>
-# Setup for existing project with pyproject.toml
-cd my_project
-uv venv
-
-# If there is a lock file, use it.
-# .. You can (and should) commit your lock files!
-# Or it will create one from your pyproject.toml file.
+# An existing project with a pyproject.toml file
+cd my_project/
 uv sync
+
+# A new project
+uv init my_new_project
+cd my_new_project/
+uv add numpy matplotlib scipy
                 </code></pre>
                 <ul>
                     <li>Each project has its own virtual environment</li>
@@ -448,29 +445,6 @@ uv sync
                     <li>Reproducible environments with lock files</li>
                     <li>Easy to share and collaborate</li>
                 </ul>
-            </section>
-
-            <!-- Slide 20: Auto-activation with cd -->
-            <section>
-                <h2>Auto-activation with <code>cd</code></h2>
-                <p class="small-text">Override <code>cd</code> to automatically activate/deactivate venvs:</p>
-                <pre><code class="language-bash" data-trim data-line-numbers>
-function cd() {
-  builtin cd "$@"
-
-  if [[ -z "$VIRTUAL_ENV" ]] ; then
-      if [[ -d ./.venv ]] ; then
-        source ./.venv/bin/activate
-      fi
-  else
-      parentdir="$(dirname "$VIRTUAL_ENV")"
-      if [[ "$PWD"/ != "$parentdir"/* ]] ; then
-        deactivate
-      fi
-  fi
-}
-                </code></pre>
-                <p class="small-text">Add to your <code>~/.bashrc</code> or <code>~/.zshrc</code></p>
             </section>
 
             <!-- Slide 21: Protects Me From Silly Mistakes -->
@@ -497,7 +471,7 @@ python not found
             <section>
                 <h2>My Scratch Environment</h2>
                 <ul>
-                    <li><strong>Location</strong>: <code>~/research/</code></li>
+                    <li>Top-level virtual environment in <code>~/research/</code></li>
                     <li>General-purpose stack with most tools I need</li>
                     <li>Don't care about specific versions</li>
                     <li>It's okay if it breaks - just recreate it!</li>
@@ -505,12 +479,35 @@ python not found
                 </ul>
             </section>
 
+            <section>
+                <h2>Another Scratch Approach:</h2>
+                <p>Manage dependencies in standalone scripts:</p>
+                <pre><code class="language-python" data-trim>
+            # /// script
+            # requires-python = ">=3.12"
+            # dependencies = [
+            #     "requests",
+            #     "rich",
+            # ]
+            # ///
+
+            import requests
+            from rich import print
+
+            response = requests.get("https://api.github.com")
+            print(response.json())
+                            </code></pre>
+                <pre><code class="language-bash" data-trim>
+            uv run script.py
+                            </code></pre>
+            </section>
+
             <!-- Slide 21: On the Cluster -->
             <section>
                 <h2>On Flatiron Clusters</h2>
                 <p>Load <code>uv</code> using the module system:</p>
                 <pre><code class="language-bash" data-trim>
-module load uv
+module load uv python
                 </code></pre>
                 <p class="small-text">As per <a
                         href="https://wiki.flatironinstitute.org/SCC/Software/UvPython#uv_on_the_cluster">the docs</a>,
@@ -520,6 +517,21 @@ module load uv
                     and <code>uv</code>'s file linking strategy only works within a filesystem.</p>
             </section>
 
+            <section>
+                <h2>On Flatiron Clusters</h2>
+                <p>You want:
+                <ol>
+                    <li>Code stored in home directory sub-folders</li>
+                    <li>Use the system-wide built libraries on rusty
+                        <ul>
+                            <li><code>jax</code>, <code>torch</code>, etc</li>
+                        </ul>
+                    </li>
+                    <li>Data stored on ceph, linked from your home directory</li>
+                </ol>
+                </p>
+
+            </section>
             <!-- Slide 22: Getting Started -->
             <section>
                 <h2>Quick Start Guide</h2>
