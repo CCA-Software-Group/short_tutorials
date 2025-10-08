@@ -8,7 +8,7 @@ import datetime
 
 # -- Project information -----------------------------------------------------
 
-release = 0.0.1
+release = "0.0.1"
 
 project = "short_tutorials"
 author = "CCA Software Group"
