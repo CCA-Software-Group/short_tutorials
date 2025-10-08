@@ -9,7 +9,7 @@ This site displays .html tutorials; for a complete list of tutorials, see `the r
    :maxdepth: 1
    :caption: Tutorials
 
-    Using *uv* <uv_tutorial_pointer>
+    Using uv <uv_tutorial_pointer>
 
 .. toctree:: 
    :maxdepth: 1
