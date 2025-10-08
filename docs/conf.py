@@ -38,6 +38,13 @@ extensions = [
     "snakeviz",
 ]
 
+nb_execution_mode = "force"
+nb_kernel_rgx_replacements = {
+    "julia.*": "julia-1.11",
+}
+
+nbsphinx_allow_errors = True
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
 
