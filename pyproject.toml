@@ -18,6 +18,7 @@ dependencies = [
     "notebook",
     "ipykernel",
     "pytest",
+    "jax",
 ]
 
 [project.optional-dependencies]
@@ -30,6 +31,7 @@ docs = [
     "jupyter_client",
     "ipykernel",
     "myst_parser",
+    "jupyter-book",
 ]
 coding_standards = [
     "ruff",
