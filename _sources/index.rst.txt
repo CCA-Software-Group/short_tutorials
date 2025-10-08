@@ -1,22 +1,18 @@
 Documentation
 =============
 
-Welcome to the `py_template` docs!
+Welcome to the `short_tutorials` docs!
 
-See the 'getting started' guide for steps on how to make your own Python repo using this template and considerations for building your own package. 
-
-The API has example entries for the function and class in `example_module.py`.
+This site displays .html tutorials; for a complete list of tutorials, see `the repo <https://github.com/CCA-Software-Group/short_tutorials/tree/main/short_tutorials>`_.
 
 .. toctree:: 
    :maxdepth: 1
    :caption: Tutorials
 
-    Getting started guide <getting_started>
+    Using *uv* <uv_tutorial_pointer>
 
 .. toctree:: 
    :maxdepth: 1
    :caption: Reference
 
-    API <py_API>
-    Index <genindex>
-    GitHub repo <https://github.com/CCA-Software-Group/py_template>
+    GitHub repo <https://github.com/CCA-Software-Group/short_tutorials>
