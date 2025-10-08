@@ -8,13 +8,10 @@ import datetime
 
 # -- Project information -----------------------------------------------------
 
-# The full version, including alpha/beta/rc tags
-from py_template import __version__
+release = 0.0.1
 
-release = __version__
-
-project = "py_template"
-author = "Jeff Jennings"
+project = "short_tutorials"
+author = "CCA Software Group"
 copyright = f"{datetime.datetime.now().year}, {author}"  # noqa: A001
 
 # -- General configuration ---------------------------------------------------
