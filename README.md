@@ -1,4 +1,4 @@
 Short software tutorials
-------------------------
+========================
 
-This repo collects tutorials on a range of software development topics in various languages, many of which have been created for the CCA software tutorial series. The `short_tutorials` folder contains all tutorials, often in the form of Jupyter notebooks. For tutorials there in _.html_ format, see the [docs](https://cca-software-group.github.io/short_tutorials/) for the rendered tutorial pages.
+This repo collects tutorials on a range of software development topics in various languages, many of which have been created for the CCA software tutorial series. See the [docs](https://cca-software-group.github.io/short_tutorials/) for all rendered tutorial pages.
