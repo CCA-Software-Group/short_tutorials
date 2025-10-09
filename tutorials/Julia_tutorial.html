@@ -366,32 +366,32 @@ document.write(`
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 1000000-element Vector{Float64}:
- 0.8417023077161657
- 0.7882766047652706
- 0.06248966513930976
- 0.7533522212090215
- 0.3751857454329166
- 0.3956741123772659
- 0.12555534851830719
- 0.703753774555457
- 0.024855619108786198
- 0.55113824302824
- 0.18373921068967958
- 0.38561630734961827
- 0.34761495145267707
+ 0.12795779027511078
+ 0.41234930055279795
+ 0.9021612986458434
+ 0.8484084938603623
+ 0.2626096245687748
+ 0.15505654288451753
+ 0.9984993833432751
+ 0.11574351928260929
+ 0.2584413915233884
+ 0.6247094424376766
+ 0.5545647356708524
+ 0.5188002051549406
+ 0.6341933015554647
  ⋮
- 0.6135477510887072
- 0.21518380047112462
- 0.07244318509651093
- 0.4281735169893237
- 0.3435090028649168
- 0.09703858455122871
- 0.09333621130341974
- 0.13559936952585172
- 0.8366169088592379
- 0.811769370411643
- 0.8925669150247477
- 0.7550152382892712
+ 0.05590640350399201
+ 0.5996311110181923
+ 0.029198719435766907
+ 0.2966464356494156
+ 0.08008557641522163
+ 0.2924107236281668
+ 0.7112889796146588
+ 0.14514499459265273
+ 0.792093407980317
+ 0.518380732207982
+ 0.41502663407987106
+ 0.8651237451532087
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -407,7 +407,7 @@ document.write(`
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-  0.026501 seconds (57.86 k allocations: 2.918 MiB, 98.78% compilation time)
+  0.029801 seconds (57.86 k allocations: 2.918 MiB, 98.79% compilation time)
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -416,7 +416,7 @@ document.write(`
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-500034.00481887336
+500017.1547485922
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -455,7 +455,7 @@ mysum (generic function with 1 method)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-  0.010825 seconds (3.80 k allocations: 194.516 KiB, 91.04% compilation time)
+  0.011567 seconds (3.80 k allocations: 194.516 KiB, 91.54% compilation time)
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -464,7 +464,7 @@ mysum (generic function with 1 method)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-500034.00481886975
+500017.15474858234
 </pre></div></div>
 </div>
 </section>
@@ -886,8 +886,8 @@ vectors:
 </div>
 <div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># I don&#39;t recommend doing this on Google colab</span>
 
-<span class="c">#using Pkg</span>
-<span class="c">#Pkg.add(&quot;PythonPlot&quot;)</span>
+<span class="k">using</span><span class="w"> </span><span class="n">Pkg</span>
+<span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;PythonPlot&quot;</span><span class="p">)</span>
 <span class="k">using</span><span class="w"> </span><span class="n">PythonPlot</span>
 </pre></div>
 </div>
@@ -895,24 +895,146 @@ vectors:
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-ArgumentError: Package PythonPlot not found in current path.
-- Run `import Pkg; Pkg.add(&#34;PythonPlot&#34;)` to install the PythonPlot package.
-
-Stacktrace:
- [1] <span class="ansi-bold">macro expansion</span>
-<span class="ansi-black-intense-fg">   @</span> <span class="ansi-black-intense-fg">./</span><span class="ansi-black-intense-fg ansi-underline">loading.jl:2296</span><span class="ansi-black-intense-fg"> [inlined]</span>
- [2] <span class="ansi-bold">macro expansion</span>
-<span class="ansi-black-intense-fg">   @</span> <span class="ansi-black-intense-fg">./</span><span class="ansi-black-intense-fg ansi-underline">lock.jl:273</span><span class="ansi-black-intense-fg"> [inlined]</span>
- [3] <span class="ansi-bold">__require</span><span class="ansi-bold">(</span><span class="ansi-black-intense-fg">into</span>::Module, <span class="ansi-black-intense-fg">mod</span>::Symbol<span class="ansi-bold">)</span>
-<span class="ansi-black-intense-fg">   @</span> <span class="ansi-black-intense-fg">Base</span> <span class="ansi-black-intense-fg">./</span><span class="ansi-black-intense-fg ansi-underline">loading.jl:2271</span>
- [4] <span class="ansi-bold">#invoke_in_world#3</span>
-<span class="ansi-black-intense-fg">   @</span> <span class="ansi-black-intense-fg">./</span><span class="ansi-black-intense-fg ansi-underline">essentials.jl:1089</span><span class="ansi-black-intense-fg"> [inlined]</span>
- [5] <span class="ansi-bold">invoke_in_world</span>
-<span class="ansi-black-intense-fg">   @</span> <span class="ansi-black-intense-fg">./</span><span class="ansi-black-intense-fg ansi-underline">essentials.jl:1086</span><span class="ansi-black-intense-fg"> [inlined]</span>
- [6] <span class="ansi-bold">require</span><span class="ansi-bold">(</span><span class="ansi-black-intense-fg">into</span>::Module, <span class="ansi-black-intense-fg">mod</span>::Symbol<span class="ansi-bold">)</span>
-<span class="ansi-black-intense-fg">   @</span> <span class="ansi-black-intense-fg">Base</span> <span class="ansi-black-intense-fg">./</span><span class="ansi-black-intense-fg ansi-underline">loading.jl:2260</span>
+<span class="ansi-green-intense-fg ansi-bold">    Updating</span> registry at `~/.julia/registries/General.toml`
+<span class="ansi-green-intense-fg ansi-bold">   Resolving</span> package versions...
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> DataAPI ───────────────────── v1.16.0
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> JSON3 ─────────────────────── v1.14.3
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> Tables ────────────────────── v1.12.1
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> TableTraits ───────────────── v1.0.1
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> MicroMamba ────────────────── v0.1.14
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> ColorTypes ────────────────── v0.12.1
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> Scratch ───────────────────── v1.3.0
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> PythonCall ────────────────── v0.9.28
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> micromamba_jll ────────────── v1.5.12+0
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> FixedPointNumbers ─────────── v0.8.5
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> IteratorInterfaceExtensions ─ v1.0.0
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> Pidfile ───────────────────── v1.3.0
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> DataValueInterfaces ───────── v1.0.0
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> LaTeXStrings ──────────────── v1.4.0
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> OrderedCollections ────────── v1.8.1
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> Reexport ──────────────────── v1.2.2
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> Statistics ────────────────── v1.11.1
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> UnsafePointers ────────────── v1.0.0
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> PythonPlot ────────────────── v1.0.6
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> StructTypes ───────────────── v1.11.0
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> MacroTools ────────────────── v0.5.16
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> CondaPkg ──────────────────── v0.2.33
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> pixi_jll ──────────────────── v0.41.3+0
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> Colors ────────────────────── v0.13.1
+<span class="ansi-green-intense-fg ansi-bold">    Updating</span> `~/.julia/environments/v1.11/Project.toml`
+  <span class="ansi-black-intense-fg">[274fc56d] </span><span class="ansi-green-intense-fg">+ PythonPlot v1.0.6</span>
+<span class="ansi-green-intense-fg ansi-bold">    Updating</span> `~/.julia/environments/v1.11/Manifest.toml`
+  <span class="ansi-black-intense-fg">[3da002f7] </span><span class="ansi-green-intense-fg">+ ColorTypes v0.12.1</span>
+  <span class="ansi-black-intense-fg">[5ae59095] </span><span class="ansi-green-intense-fg">+ Colors v0.13.1</span>
+  <span class="ansi-black-intense-fg">[992eb4ea] </span><span class="ansi-green-intense-fg">+ CondaPkg v0.2.33</span>
+  <span class="ansi-black-intense-fg">[9a962f9c] </span><span class="ansi-green-intense-fg">+ DataAPI v1.16.0</span>
+  <span class="ansi-black-intense-fg">[e2d170a0] </span><span class="ansi-green-intense-fg">+ DataValueInterfaces v1.0.0</span>
+  <span class="ansi-black-intense-fg">[53c48c17] </span><span class="ansi-green-intense-fg">+ FixedPointNumbers v0.8.5</span>
+  <span class="ansi-black-intense-fg">[82899510] </span><span class="ansi-green-intense-fg">+ IteratorInterfaceExtensions v1.0.0</span>
+  <span class="ansi-black-intense-fg">[0f8b85d8] </span><span class="ansi-green-intense-fg">+ JSON3 v1.14.3</span>
+  <span class="ansi-black-intense-fg">[b964fa9f] </span><span class="ansi-green-intense-fg">+ LaTeXStrings v1.4.0</span>
+  <span class="ansi-black-intense-fg">[1914dd2f] </span><span class="ansi-green-intense-fg">+ MacroTools v0.5.16</span>
+  <span class="ansi-black-intense-fg">[0b3b1443] </span><span class="ansi-green-intense-fg">+ MicroMamba v0.1.14</span>
+  <span class="ansi-black-intense-fg">[bac558e1] </span><span class="ansi-green-intense-fg">+ OrderedCollections v1.8.1</span>
+  <span class="ansi-black-intense-fg">[fa939f87] </span><span class="ansi-green-intense-fg">+ Pidfile v1.3.0</span>
+  <span class="ansi-black-intense-fg">[6099a3de] </span><span class="ansi-green-intense-fg">+ PythonCall v0.9.28</span>
+  <span class="ansi-black-intense-fg">[274fc56d] </span><span class="ansi-green-intense-fg">+ PythonPlot v1.0.6</span>
+  <span class="ansi-black-intense-fg">[189a3867] </span><span class="ansi-green-intense-fg">+ Reexport v1.2.2</span>
+  <span class="ansi-black-intense-fg">[6c6a2e73] </span><span class="ansi-green-intense-fg">+ Scratch v1.3.0</span>
+  <span class="ansi-black-intense-fg">[10745b16] </span><span class="ansi-green-intense-fg">+ Statistics v1.11.1</span>
+  <span class="ansi-black-intense-fg">[856f2bd8] </span><span class="ansi-green-intense-fg">+ StructTypes v1.11.0</span>
+  <span class="ansi-black-intense-fg">[3783bdb8] </span><span class="ansi-green-intense-fg">+ TableTraits v1.0.1</span>
+  <span class="ansi-black-intense-fg">[bd369af6] </span><span class="ansi-green-intense-fg">+ Tables v1.12.1</span>
+  <span class="ansi-black-intense-fg">[e17b2a0c] </span><span class="ansi-green-intense-fg">+ UnsafePointers v1.0.0</span>
+<span class="ansi-yellow-fg">⌅</span> <span class="ansi-black-intense-fg">[f8abcde7] </span><span class="ansi-green-intense-fg">+ micromamba_jll v1.5.12+0</span>
+  <span class="ansi-black-intense-fg">[4d7b5844] </span><span class="ansi-green-intense-fg">+ pixi_jll v0.41.3+0</span>
+  <span class="ansi-black-intense-fg">[4af54fe1] </span><span class="ansi-green-intense-fg">+ LazyArtifacts v1.11.0</span>
+  <span class="ansi-black-intense-fg">[37e2e46d] </span><span class="ansi-green-intense-fg">+ LinearAlgebra v1.11.0</span>
+  <span class="ansi-black-intense-fg">[9e88b42a] </span><span class="ansi-green-intense-fg">+ Serialization v1.11.0</span>
+  <span class="ansi-black-intense-fg">[8dfed614] </span><span class="ansi-green-intense-fg">+ Test v1.11.0</span>
+  <span class="ansi-black-intense-fg">[e66e0078] </span><span class="ansi-green-intense-fg">+ CompilerSupportLibraries_jll v1.1.1+0</span>
+  <span class="ansi-black-intense-fg">[4536629a] </span><span class="ansi-green-intense-fg">+ OpenBLAS_jll v0.3.27+1</span>
+  <span class="ansi-black-intense-fg">[8e850b90] </span><span class="ansi-green-intense-fg">+ libblastrampoline_jll v5.11.0+0</span>
+<span class="ansi-cyan-intense-fg ansi-bold">        Info</span> Packages marked with <span class="ansi-yellow-fg">⌅</span> have new versions available but compatibility constraints restrict them from upgrading. To see why use `status --outdated -m`
+<span class="ansi-green-intense-fg ansi-bold">Precompiling</span> project...
+    455.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">Reexport</span>
+    469.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">DataValueInterfaces</span>
+    546.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">LaTeXStrings</span>
+    900.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">OrderedCollections</span>
+    870.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">Statistics</span>
+    408.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">IteratorInterfaceExtensions</span>
+    485.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">UnsafePointers</span>
+    760.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">DataAPI</span>
+    613.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">Scratch</span>
+    591.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">Pidfile</span>
+   1132.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">StructTypes</span>
+    538.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">TableTraits</span>
+   1743.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">pixi_jll</span>
+   2094.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">micromamba_jll</span>
+   1311.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">Tables</span>
+   4741.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">MacroTools</span>
+   4160.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">FixedPointNumbers</span>
+   1383.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">ColorTypes</span>
+   4411.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">MicroMamba</span>
+    738.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">ColorTypes → StyledStringsExt</span>
+   5874.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">Colors</span>
+  10643.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">JSON3</span>
+   4930.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">CondaPkg</span>
+  14130.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">PythonCall</span>
+  15524.1 ms<span class="ansi-green-fg">  ✓ </span>PythonPlot
+  25 dependencies successfully precompiled in 49 seconds. 43 already precompiled.
+  <span class="ansi-yellow-fg">3</span> dependencies had output during precompilation:<span class="ansi-yellow-fg">
+┌ </span>MicroMamba<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold"> Downloading</span> artifact: micromamba<span class="ansi-yellow-fg">
+└  </span><span class="ansi-yellow-fg">
+┌ </span>CondaPkg<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold"> Downloading</span> artifact: pixi<span class="ansi-yellow-fg">
+└  </span><span class="ansi-yellow-fg">
+┌ </span>PythonPlot<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">    CondaPkg </span>Found dependencies: /home/runner/.julia/packages/PythonPlot/oS8x4/CondaPkg.toml<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">    CondaPkg </span>Found dependencies: /home/runner/.julia/packages/PythonCall/mkWc2/CondaPkg.toml<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">    CondaPkg </span>Found dependencies: /home/runner/.julia/packages/IJulia/y8YGF/CondaPkg.toml<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">    CondaPkg </span>Found dependencies: /home/runner/.julia/packages/CondaPkg/0UqYV/CondaPkg.toml<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">    CondaPkg </span>Resolving changes<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span><span class="ansi-green-fg">+ jupyter_client</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span><span class="ansi-green-fg">+ jupyter_kernel_test</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span><span class="ansi-green-fg">+ libstdcxx</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span><span class="ansi-green-fg">+ libstdcxx-ng</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span><span class="ansi-green-fg">+ matplotlib</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span><span class="ansi-green-fg">+ python</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">    CondaPkg </span>Initialising pixi<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">/home/runner/.julia/artifacts/cefba4912c2b400756d043a2563ef77a0088866b/bin/pixi</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">init</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">--format pixi</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>└ <span class="ansi-black-intense-fg">/home/runner/.julia/environments/v1.11/.CondaPkg</span><span class="ansi-yellow-fg">
+│  </span>✔ Created /home/runner/.julia/environments/v1.11/.CondaPkg/pixi.toml<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">    CondaPkg </span>Wrote /home/runner/.julia/environments/v1.11/.CondaPkg/pixi.toml<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">[dependencies]</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">jupyter_kernel_test = &#34;*&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">libstdcxx = &#34;&gt;=3.4,&lt;15.0&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">libstdcxx-ng = &#34;&gt;=3.4,&lt;15.0&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">matplotlib = &#34;&gt;=1&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">jupyter_client = &#34;*&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">    [dependencies.python]</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">    channel = &#34;conda-forge&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">    build = &#34;*cp*&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">    version = &#34;&gt;=3.9,&lt;4&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">[project]</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">name = &#34;.CondaPkg&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">platforms = [&#34;linux-64&#34;]</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">channels = [&#34;conda-forge&#34;]</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">channel-priority = &#34;strict&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>└ <span class="ansi-black-intense-fg">description = &#34;automatically generated by CondaPkg.jl&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">    CondaPkg </span>Installing packages<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">/home/runner/.julia/artifacts/cefba4912c2b400756d043a2563ef77a0088866b/bin/pixi</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">install</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>└ <span class="ansi-black-intense-fg">--manifest-path /home/runner/.julia/environments/v1.11/.CondaPkg/pixi.toml</span><span class="ansi-yellow-fg">
+│  </span>✔ The default environment has been installed.<span class="ansi-yellow-fg">
+└  </span>
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -928,17 +1050,20 @@ Stacktrace:
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
+<img alt="../_images/tutorials_Julia_tutorial_34_0.png" src="../_images/tutorials_Julia_tutorial_34_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
 <div class="highlight"><pre>
-UndefVarError: `figure` not defined in `Main`
-Suggestion: check for spelling errors or missing imports.
-
-Stacktrace:
- [1] top-level scope
-<span class="ansi-black-intense-fg">   @</span> <span class="ansi-black-intense-fg ansi-underline">In[28]:3</span>
+Python: Text(23.999999999999993, 0.5, &#39;sin(x)&#39;)
 </pre></div></div>
 </div>
 </section>
