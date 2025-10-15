@@ -33,9 +33,7 @@ extensions = [
     "sphinx_automodapi.smart_resolver",
     "sphinx_book_theme",
     "nbsphinx",    
-    "myst_parser",    
-    "pytest",
-    "snakeviz",
+    "myst_parser",
 ]
 
 nb_execution_mode = "force"
