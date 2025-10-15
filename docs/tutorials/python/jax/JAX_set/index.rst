@@ -1,5 +1,5 @@
-Jumping into JAX
-================
+Series: Jumping into JAX
+========================
 
 This is a set of tutorials on JAX for scientific computing and astronomy applications.
 
