@@ -7,20 +7,32 @@ in astronomy.
 
 .. toctree:: 
    :maxdepth: 1
+   :caption: Language-agnostic tutorials
+
+   tutorials/general/numerics.rst
+   tutorials/general/vibe_coding.rst
+
+.. toctree:: 
+   :maxdepth: 2
    :caption: Python tutorials
 
-   Errors and exceptions in Python <tutorials/errors_exceptions_in_python.ipynb>
-   Functions and classes in Python <tutorials/functions_classes_in_python.ipynb>
-   Jumping into JAX <tutorials/JAX/index-JAX.rst>   
-   Profiling and accelerating Python code <tutorials/profiling_accelerating_python_code.ipynb>
-   Using uv <tutorials/uv_tutorial_pointer.rst>   
-   Virtual environments in Python <tutorials/virtual_environments_python.rst>
+   tutorials/python/basics/index.rst
+   tutorials/python/envs/index.rst
+   tutorials/python/accelerating/index.rst
+   tutorials/python/jax/index.rst
 
 .. toctree:: 
    :maxdepth: 1
    :caption: Julia tutorials
 
-   Julia crash course <tutorials/Julia_tutorial.ipynb>
+   tutorials/julia/Julia_tutorial.ipynb
+
+.. toctree:: 
+   :maxdepth: 1
+   :caption: Package-specific tutorials
+
+   tutorials/package-specific/korg.rst
+   tutorials/package-specific/MeshoidTest.ipynb
 
 .. toctree:: 
    :maxdepth: 1
