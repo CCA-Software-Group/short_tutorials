@@ -8,18 +8,7 @@ version = "0.0.1"
 description = "CCA Software Group programming tutorials"
 requires-python = ">=3.10"
 
-dependencies = [
-    "numpy",
-    "matplotlib",
-    "astropy",
-    "numba",
-    "snakeviz",
-    "jupyterlab",
-    "notebook",
-    "ipykernel",
-    "pytest",
-    "jax",
-]
+dependencies = []
 
 [project.optional-dependencies]
 docs = [
@@ -31,8 +20,9 @@ docs = [
     "jupyter_client",
     "ipykernel",
     "myst_parser",
-    "jupyter-book",
+    "jupyter-book", 
 ]
+
 coding_standards = [
     "ruff",
 ]
