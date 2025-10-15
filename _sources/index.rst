@@ -1,5 +1,5 @@
-Documentation
-=============
+short_tutorials
+===============
 
 Welcome to the `short_tutorials` docs! This site is a collection of software engineering 
 tutorials, most for Python, and geared where relevant toward applications for research 
