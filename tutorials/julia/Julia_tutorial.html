@@ -1,0 +1,1226 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Julia crash course &#8212; short_tutorials 0.0.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=e645c8fa"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/julia/Julia_tutorial';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Synthesizing and fitting spectra with Korg" href="../package-specific/korg.html" />
+    <link rel="prev" title="Distributed Computing in JAX" href="../python/jax/jax_distributed_computing.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">short_tutorials 0.0.1 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Language-agnostic tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../general/numerics.html">Scientific computing and numerics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/vibe_coding.html">AI tools for software</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python/basics/index.html">Python basics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python/basics/errors_exceptions_in_python.html">Errors and exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/basics/functions_classes_in_python.html">Functions and classes in Python</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python/envs/index.html">Python environments and packaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python/envs/developing_packages.html">Developing a Python package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/envs/using_uv.html">Using uv for Python packaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/envs/virtual_environments_python.html">Using virtual environments for Python</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python/accelerating/index.html">Profiling and accelerating Python</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python/accelerating/profiling_accelerating_python_code.html">Profiling and accelerating Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/accelerating/numba.html">Using Numba to accelerate Python</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python/jax/index.html">JAX</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python/jax/Intro-to-JAX.html">Intro to JAX</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../python/jax/JAX_set/index.html">Series: Jumping into JAX</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../python/jax/JAX_set/0-the_new_python.html">Tutorial 0 - New(er) Patterns in (Scientific) Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../python/jax/JAX_set/1-jax_and_autodiff.html">Tutorial 1 - Intro to JAX and Automatic Differentiation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../python/jax/JAX_set/2-quax.html">Tutorial 2 - Intro to Quax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../python/jax/JAX_set/3-unxt.html">Tutorial 3 - Intro to Unxt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/jax/jax_distributed_computing.html">Distributed Computing in JAX</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Julia tutorials</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Julia crash course</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Package-specific tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../package-specific/korg.html">Synthesizing and fitting spectra with Korg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../package-specific/MeshoidTest.html">Simulation analysis with meshoid</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/CCA-Software-Group/short_tutorials"> GitHub repo</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/tutorials/julia/Julia_tutorial.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Julia crash course</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#just-in-time-compilation-and-performance">just-in-time compilation and performance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-dispatch">multiple dispatch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Custom-type-+-multiple-dispatch">Custom type + multiple dispatch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-linear-algebra-and-broadcasting-(%22vectorization%22)">basic linear algebra and broadcasting (“vectorization”)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#PythonPlot">PythonPlot</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Julia-crash-course">
+<h1>Julia crash course<a class="headerlink" href="#Julia-crash-course" title="Link to this heading">#</a></h1>
+<p>Author: Adam Wheeler (CCA, 2025)</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">LinearAlgebra</span><span class="p">,</span><span class="w"> </span><span class="n">Random</span>
+</pre></div>
+</div>
+</div>
+<section id="just-in-time-compilation-and-performance">
+<h2>just-in-time compilation and performance<a class="headerlink" href="#just-in-time-compilation-and-performance" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1000000-element Vector{Float64}:
+ 0.6075650102955946
+ 0.9198095316269478
+ 0.8197358436519475
+ 0.4070338882171588
+ 0.5156499834197334
+ 0.6616555891258117
+ 0.9108907814663113
+ 0.9515789210683929
+ 0.8373437342822418
+ 0.270317135940496
+ 0.0885230708735506
+ 0.0702039472401399
+ 0.43690188817683573
+ ⋮
+ 0.8569500511427652
+ 0.5498871242783319
+ 0.03784155661771571
+ 0.7432429478833781
+ 0.7012061684846387
+ 0.10078163473369739
+ 0.5273968829984164
+ 0.7396773184427704
+ 0.9096653877830627
+ 0.8946391816090253
+ 0.4421870725570882
+ 0.40326935720307777
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="nd">@time</span><span class="w"> </span><span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+  0.026775 seconds (57.86 k allocations: 2.920 MiB, 98.73% compilation time)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+499826.6379084481
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">mysum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="w">    </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">a</span>
+<span class="w">        </span><span class="n">s</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">x</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="n">s</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+mysum (generic function with 1 method)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="nd">@time</span><span class="w"> </span><span class="n">mysum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+  0.010177 seconds (3.80 k allocations: 194.516 KiB, 90.42% compilation time)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+499826.6379084611
+</pre></div></div>
+</div>
+</section>
+<section id="multiple-dispatch">
+<h2>multiple dispatch<a class="headerlink" href="#multiple-dispatch" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Define a single function with multiple methods</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">process</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">    </span><span class="c"># &quot;$&quot; is for string interpolation</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Default method: argument is of type </span><span class="si">$</span><span class="p">(</span><span class="n">typeof</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># Add specialized methods for different types</span>
+<span class="k">function</span><span class="w"> </span><span class="n">process</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Int</span><span class="p">)</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Integer method: </span><span class="si">$x</span><span class="s"> squared is </span><span class="si">$</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># this is also a valid way to write a function</span>
+<span class="n">process</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;String method: </span><span class="si">$</span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="s"> characters, uppercase: </span><span class="si">$</span><span class="p">(</span><span class="n">uppercase</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="s">&quot;</span><span class="p">)</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">process</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Array</span><span class="p">)</span>
+<span class="w">    </span><span class="c"># TODO Print the length and sum.</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+process (generic function with 4 methods)
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># try these out!</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Custom-type-+-multiple-dispatch">
+<h2>Custom type + multiple dispatch<a class="headerlink" href="#Custom-type-+-multiple-dispatch" title="Link to this heading">#</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Define a simple complex number type</span>
+<span class="c"># don&#39;t actually do this! There&#39;s a built-in one.</span>
+<span class="k">struct</span> <span class="kt">MyComplex</span>
+<span class="w">    </span><span class="n">real_component</span><span class="o">::</span><span class="kt">Float64</span>
+<span class="w">    </span><span class="n">imag_component</span><span class="o">::</span><span class="kt">Float64</span>
+<span class="k">end</span>
+
+<span class="c"># Nice string representation</span>
+<span class="k">function</span><span class="w"> </span><span class="n">Base</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">io</span><span class="o">::</span><span class="kt">IO</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="o">::</span><span class="kt">MyComplex</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">z</span><span class="o">.</span><span class="n">imag_component</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">        </span><span class="n">print</span><span class="p">(</span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;</span><span class="si">$</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">real_component</span><span class="p">)</span><span class="s"> + </span><span class="si">$</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">imag_component</span><span class="p">)</span><span class="s">i&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="n">print</span><span class="p">(</span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;</span><span class="si">$</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">real_component</span><span class="p">)</span><span class="s"> - </span><span class="si">$</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">imag_component</span><span class="p">))</span><span class="s">i&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># try creating a MyComplex</span>
+<span class="n">MyComplex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1.0 + 2.0i
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># define a couple arithmetic operations</span>
+
+<span class="c"># we have to import these to override them</span>
+<span class="k">import</span><span class="w"> </span><span class="n">Base</span><span class="o">:</span><span class="w"> </span><span class="o">+</span><span class="p">,</span><span class="w"> </span><span class="o">*</span>
+
+<span class="k">function</span><span class="w"> </span><span class="o">+</span><span class="p">(</span><span class="n">a</span><span class="o">::</span><span class="kt">MyComplex</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="o">::</span><span class="kt">MyComplex</span><span class="p">)</span>
+<span class="w">    </span><span class="n">MyComplex</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">real_component</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="o">.</span><span class="n">real_component</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="o">.</span><span class="n">imag_component</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="o">.</span><span class="n">imag_component</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="c"># &quot;Real&quot; is an abstract type that includes floats, rationals, etc.</span>
+<span class="o">+</span><span class="p">(</span><span class="n">a</span><span class="o">::</span><span class="kt">MyComplex</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="o">::</span><span class="kt">Real</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyComplex</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">real_component</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="o">.</span><span class="n">imag_component</span><span class="p">)</span>
+<span class="o">+</span><span class="p">(</span><span class="n">a</span><span class="o">::</span><span class="kt">Real</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="o">::</span><span class="kt">MyComplex</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span>
+
+<span class="k">function</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">::</span><span class="kt">MyComplex</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="o">::</span><span class="kt">MyComplex</span><span class="p">)</span>
+<span class="w">    </span><span class="n">real_part</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">.</span><span class="n">real_component</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="o">.</span><span class="n">real_component</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">a</span><span class="o">.</span><span class="n">imag_component</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="o">.</span><span class="n">imag_component</span>
+<span class="w">    </span><span class="n">imag_part</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">.</span><span class="n">real_component</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="o">.</span><span class="n">imag_component</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="o">.</span><span class="n">imag_component</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="o">.</span><span class="n">real_component</span>
+<span class="w">    </span><span class="n">MyComplex</span><span class="p">(</span><span class="n">real_part</span><span class="p">,</span><span class="w"> </span><span class="n">imag_part</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">::</span><span class="kt">MyComplex</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="o">::</span><span class="kt">Real</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyComplex</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">real_component</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="o">.</span><span class="n">imag_component</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">::</span><span class="kt">Real</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="o">::</span><span class="kt">MyComplex</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span>
+<span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># try it out</span>
+<span class="n">z1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyComplex</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">4.0</span><span class="p">)</span>
+<span class="n">z2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyComplex</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">)</span>
+<span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span>
+
+<span class="n">z1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">r</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+5.0 + 4.0i
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># this is a silly example, but this is really powerful for, e.g. dual numbers, unitful types, etc.</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="basic-linear-algebra-and-broadcasting-(%22vectorization%22)">
+<h2>basic linear algebra and broadcasting (“vectorization”)<a class="headerlink" href="#basic-linear-algebra-and-broadcasting-(%22vectorization%22)" title="Link to this heading">#</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Define matrices and vectors with clean syntax</span>
+<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">     </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">]</span>
+<span class="n">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="mi">8</span><span class="p">]</span><span class="w"> </span><span class="c"># 2×2 matrix</span>
+<span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="c"># column vector</span>
+<span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">]</span><span class="o">&#39;</span><span class="w"> </span><span class="c"># row vector</span>
+<span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2×2 Matrix{Int64}:
+ 1  2
+ 3  4
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">&#39;</span><span class="w"> </span><span class="c"># adjoint (~transpose)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2×2 adjoint(::Matrix{Int64}) with eltype Int64:
+ 1  3
+ 2  4
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># matrix addition</span>
+<span class="n">A</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2×2 Matrix{Int64}:
+  6   8
+ 10  12
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># matrix multiplication</span>
+<span class="n">A</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2-element Vector{Int64}:
+  5
+ 11
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># try w A v</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="c"># matrix power</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2×2 Matrix{Int64}:
+  7  10
+ 15  22
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># if we want to add v to each column, this doesn&#39;t work, use .+ instead</span>
+<span class="c"># &quot;.&quot; is special broadcasting syntax</span>
+
+<span class="n">A</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">v</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+DimensionMismatch: a has size (2, 2), mismatch at dim 2
+
+Stacktrace:
+ [1] <span class="ansi-bold">throw_promote_shape_mismatch</span><span class="ansi-bold">(</span><span class="ansi-black-intense-fg">a</span>::Tuple<span class="ansi-black-intense-fg">{Base.OneTo{Int64}, Base.OneTo{Int64}}</span>, <span class="ansi-black-intense-fg">b</span>::Nothing, <span class="ansi-black-intense-fg">i</span>::Int64<span class="ansi-bold">)</span>
+<span class="ansi-black-intense-fg">   @</span> <span class="ansi-black-intense-fg">Base</span> <span class="ansi-black-intense-fg">./</span><span class="ansi-black-intense-fg ansi-underline">indices.jl:135</span>
+ [2] <span class="ansi-bold">promote_shape</span>
+<span class="ansi-black-intense-fg">   @</span> <span class="ansi-black-intense-fg">./</span><span class="ansi-black-intense-fg ansi-underline">indices.jl:199</span><span class="ansi-black-intense-fg"> [inlined]</span>
+ [3] <span class="ansi-bold">promote_shape</span>
+<span class="ansi-black-intense-fg">   @</span> <span class="ansi-black-intense-fg">./</span><span class="ansi-black-intense-fg ansi-underline">indices.jl:188</span><span class="ansi-black-intense-fg"> [inlined]</span>
+ [4] <span class="ansi-bold">+</span><span class="ansi-bold">(</span><span class="ansi-black-intense-fg">A</span>::Matrix<span class="ansi-black-intense-fg">{Int64}</span>, <span class="ansi-black-intense-fg">Bs</span>::Vector<span class="ansi-black-intense-fg">{Int64}</span><span class="ansi-bold">)</span>
+<span class="ansi-black-intense-fg">   @</span> <span class="ansi-black-intense-fg">Base</span> <span class="ansi-black-intense-fg">./</span><span class="ansi-black-intense-fg ansi-underline">arraymath.jl:14</span>
+ [5] top-level scope
+<span class="ansi-black-intense-fg">   @</span> <span class="ansi-black-intense-fg ansi-underline">In[20]:4</span>
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># try adding w to each row</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># apply any function element-wise</span>
+<span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2×2 Matrix{Float64}:
+ 0.841471   0.909297
+ 0.14112   -0.756802
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># the @. macro broadcasts every operation</span>
+<span class="nd">@.</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">v</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2×2 Matrix{Float64}:
+ 2.14112  2.2432
+ 5.14112  5.2432
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">eigen</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Eigen{Float64, Float64, Matrix{Float64}, Vector{Float64}}
+values:
+2-element Vector{Float64}:
+ -0.3722813232690143
+  5.372281323269014
+vectors:
+2×2 Matrix{Float64}:
+ -0.824565  -0.415974
+  0.565767  -0.909377
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># compute A⁻¹ v</span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">\</span><span class="w"> </span><span class="n">v</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2-element Vector{Float64}:
+ 0.0
+ 0.5
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2-element Vector{Float64}:
+ 1.0
+ 2.0
+</pre></div></div>
+</div>
+</section>
+<section id="PythonPlot">
+<h2>PythonPlot<a class="headerlink" href="#PythonPlot" title="Link to this heading">#</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># I don&#39;t recommend doing this on Google colab</span>
+
+<span class="k">using</span><span class="w"> </span><span class="n">Pkg</span>
+<span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;PythonPlot&quot;</span><span class="p">)</span>
+<span class="k">using</span><span class="w"> </span><span class="n">PythonPlot</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+<span class="ansi-green-intense-fg ansi-bold">    Updating</span> registry at `~/.julia/registries/General.toml`
+<span class="ansi-green-intense-fg ansi-bold">   Resolving</span> package versions...
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> MicroMamba ────────────────── v0.1.14
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> DataAPI ───────────────────── v1.16.0
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> TableTraits ───────────────── v1.0.1
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> Tables ────────────────────── v1.12.1
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> Scratch ───────────────────── v1.3.0
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> ColorTypes ────────────────── v0.12.1
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> JSON3 ─────────────────────── v1.14.3
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> PythonCall ────────────────── v0.9.28
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> FixedPointNumbers ─────────── v0.8.5
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> IteratorInterfaceExtensions ─ v1.0.0
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> DataValueInterfaces ───────── v1.0.0
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> micromamba_jll ────────────── v1.5.12+0
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> LaTeXStrings ──────────────── v1.4.0
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> OrderedCollections ────────── v1.8.1
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> Pidfile ───────────────────── v1.3.0
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> PythonPlot ────────────────── v1.0.6
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> Statistics ────────────────── v1.11.1
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> Reexport ──────────────────── v1.2.2
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> pixi_jll ──────────────────── v0.41.3+0
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> UnsafePointers ────────────── v1.0.0
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> StructTypes ───────────────── v1.11.0
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> MacroTools ────────────────── v0.5.16
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> CondaPkg ──────────────────── v0.2.33
+<span class="ansi-green-intense-fg ansi-bold">   Installed</span> Colors ────────────────────── v0.13.1
+<span class="ansi-green-intense-fg ansi-bold">    Updating</span> `~/.julia/environments/v1.11/Project.toml`
+  <span class="ansi-black-intense-fg">[274fc56d] </span><span class="ansi-green-intense-fg">+ PythonPlot v1.0.6</span>
+<span class="ansi-green-intense-fg ansi-bold">    Updating</span> `~/.julia/environments/v1.11/Manifest.toml`
+  <span class="ansi-black-intense-fg">[3da002f7] </span><span class="ansi-green-intense-fg">+ ColorTypes v0.12.1</span>
+  <span class="ansi-black-intense-fg">[5ae59095] </span><span class="ansi-green-intense-fg">+ Colors v0.13.1</span>
+  <span class="ansi-black-intense-fg">[992eb4ea] </span><span class="ansi-green-intense-fg">+ CondaPkg v0.2.33</span>
+  <span class="ansi-black-intense-fg">[9a962f9c] </span><span class="ansi-green-intense-fg">+ DataAPI v1.16.0</span>
+  <span class="ansi-black-intense-fg">[e2d170a0] </span><span class="ansi-green-intense-fg">+ DataValueInterfaces v1.0.0</span>
+  <span class="ansi-black-intense-fg">[53c48c17] </span><span class="ansi-green-intense-fg">+ FixedPointNumbers v0.8.5</span>
+  <span class="ansi-black-intense-fg">[82899510] </span><span class="ansi-green-intense-fg">+ IteratorInterfaceExtensions v1.0.0</span>
+  <span class="ansi-black-intense-fg">[0f8b85d8] </span><span class="ansi-green-intense-fg">+ JSON3 v1.14.3</span>
+  <span class="ansi-black-intense-fg">[b964fa9f] </span><span class="ansi-green-intense-fg">+ LaTeXStrings v1.4.0</span>
+  <span class="ansi-black-intense-fg">[1914dd2f] </span><span class="ansi-green-intense-fg">+ MacroTools v0.5.16</span>
+  <span class="ansi-black-intense-fg">[0b3b1443] </span><span class="ansi-green-intense-fg">+ MicroMamba v0.1.14</span>
+  <span class="ansi-black-intense-fg">[bac558e1] </span><span class="ansi-green-intense-fg">+ OrderedCollections v1.8.1</span>
+  <span class="ansi-black-intense-fg">[fa939f87] </span><span class="ansi-green-intense-fg">+ Pidfile v1.3.0</span>
+  <span class="ansi-black-intense-fg">[6099a3de] </span><span class="ansi-green-intense-fg">+ PythonCall v0.9.28</span>
+  <span class="ansi-black-intense-fg">[274fc56d] </span><span class="ansi-green-intense-fg">+ PythonPlot v1.0.6</span>
+  <span class="ansi-black-intense-fg">[189a3867] </span><span class="ansi-green-intense-fg">+ Reexport v1.2.2</span>
+  <span class="ansi-black-intense-fg">[6c6a2e73] </span><span class="ansi-green-intense-fg">+ Scratch v1.3.0</span>
+  <span class="ansi-black-intense-fg">[10745b16] </span><span class="ansi-green-intense-fg">+ Statistics v1.11.1</span>
+  <span class="ansi-black-intense-fg">[856f2bd8] </span><span class="ansi-green-intense-fg">+ StructTypes v1.11.0</span>
+  <span class="ansi-black-intense-fg">[3783bdb8] </span><span class="ansi-green-intense-fg">+ TableTraits v1.0.1</span>
+  <span class="ansi-black-intense-fg">[bd369af6] </span><span class="ansi-green-intense-fg">+ Tables v1.12.1</span>
+  <span class="ansi-black-intense-fg">[e17b2a0c] </span><span class="ansi-green-intense-fg">+ UnsafePointers v1.0.0</span>
+<span class="ansi-yellow-fg">⌅</span> <span class="ansi-black-intense-fg">[f8abcde7] </span><span class="ansi-green-intense-fg">+ micromamba_jll v1.5.12+0</span>
+  <span class="ansi-black-intense-fg">[4d7b5844] </span><span class="ansi-green-intense-fg">+ pixi_jll v0.41.3+0</span>
+  <span class="ansi-black-intense-fg">[4af54fe1] </span><span class="ansi-green-intense-fg">+ LazyArtifacts v1.11.0</span>
+  <span class="ansi-black-intense-fg">[37e2e46d] </span><span class="ansi-green-intense-fg">+ LinearAlgebra v1.11.0</span>
+  <span class="ansi-black-intense-fg">[9e88b42a] </span><span class="ansi-green-intense-fg">+ Serialization v1.11.0</span>
+  <span class="ansi-black-intense-fg">[8dfed614] </span><span class="ansi-green-intense-fg">+ Test v1.11.0</span>
+  <span class="ansi-black-intense-fg">[e66e0078] </span><span class="ansi-green-intense-fg">+ CompilerSupportLibraries_jll v1.1.1+0</span>
+  <span class="ansi-black-intense-fg">[4536629a] </span><span class="ansi-green-intense-fg">+ OpenBLAS_jll v0.3.27+1</span>
+  <span class="ansi-black-intense-fg">[8e850b90] </span><span class="ansi-green-intense-fg">+ libblastrampoline_jll v5.11.0+0</span>
+<span class="ansi-cyan-intense-fg ansi-bold">        Info</span> Packages marked with <span class="ansi-yellow-fg">⌅</span> have new versions available but compatibility constraints restrict them from upgrading. To see why use `status --outdated -m`
+<span class="ansi-green-intense-fg ansi-bold">Precompiling</span> project...
+    441.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">Reexport</span>
+    459.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">LaTeXStrings</span>
+    490.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">DataValueInterfaces</span>
+    665.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">Statistics</span>
+    927.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">OrderedCollections</span>
+    369.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">IteratorInterfaceExtensions</span>
+    531.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">UnsafePointers</span>
+    538.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">DataAPI</span>
+    690.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">Scratch</span>
+    592.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">Pidfile</span>
+   1141.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">StructTypes</span>
+    601.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">TableTraits</span>
+   1690.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">micromamba_jll</span>
+   1623.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">pixi_jll</span>
+   1495.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">Tables</span>
+   4061.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">MacroTools</span>
+   3805.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">FixedPointNumbers</span>
+   3164.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">MicroMamba</span>
+   1574.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">ColorTypes</span>
+    703.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">ColorTypes → StyledStringsExt</span>
+   4845.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">Colors</span>
+  10050.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">JSON3</span>
+   4211.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">CondaPkg</span>
+  13248.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-black-intense-fg">PythonCall</span>
+PythonCallExt<span class="ansi-yellow-fg"> Waiting for background task / IO / timer.</span>
+[pid 3516] waiting for IO to finish:
+ Handle type        uv_handle_t-&gt;data
+ timer              0x30d65af0-&gt;0x7fa82a41a620
+This means that a package has started a background task or event source that has not finished running. For precompilation to complete successfully, the event source needs to be closed explicitly. See the developer documentation on fixing precompilation hangs for more help.
+  16158.0 ms<span class="ansi-green-fg">  ✓ </span>PythonPlot
+  25778.5 ms<span class="ansi-green-fg">  ✓ </span>IJulia → PythonCallExt
+  26 dependencies successfully precompiled in 57 seconds. 43 already precompiled.
+  <span class="ansi-yellow-fg">4</span> dependencies had output during precompilation:<span class="ansi-yellow-fg">
+┌ </span>MicroMamba<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold"> Downloading</span> artifact: micromamba<span class="ansi-yellow-fg">
+└  </span><span class="ansi-yellow-fg">
+┌ </span>IJulia → PythonCallExt<span class="ansi-yellow-fg">
+│  </span><span class="ansi-cyan-intense-fg ansi-bold">┌ </span><span class="ansi-cyan-intense-fg ansi-bold">Info: </span>CondaPkg: Waiting for lock to be freed. You may delete this file if no other process is resolving.<span class="ansi-yellow-fg">
+│  </span><span class="ansi-cyan-intense-fg ansi-bold">└ </span>  lock_file = &#34;/home/runner/.julia/environments/v1.11/.CondaPkg/lock&#34;<span class="ansi-yellow-fg">
+│  </span><span class="ansi-yellow-fg">
+│  </span>[pid 3516] waiting for IO to finish:<span class="ansi-yellow-fg">
+│  </span> Handle type        uv_handle_t-&gt;data<span class="ansi-yellow-fg">
+│  </span> timer              0x30d65af0-&gt;0x7fa82a41a620<span class="ansi-yellow-fg">
+│  </span>This means that a package has started a background task or event source that has not finished running. For precompilation to complete successfully, the event source needs to be closed explicitly. See the developer documentation on fixing precompilation hangs for more help.<span class="ansi-yellow-fg">
+└  </span><span class="ansi-yellow-fg">
+┌ </span>CondaPkg<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold"> Downloading</span> artifact: pixi<span class="ansi-yellow-fg">
+└  </span><span class="ansi-yellow-fg">
+┌ </span>PythonPlot<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">    CondaPkg </span>Found dependencies: /home/runner/.julia/packages/PythonPlot/oS8x4/CondaPkg.toml<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">    CondaPkg </span>Found dependencies: /home/runner/.julia/packages/PythonCall/mkWc2/CondaPkg.toml<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">    CondaPkg </span>Found dependencies: /home/runner/.julia/packages/IJulia/xpifh/CondaPkg.toml<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">    CondaPkg </span>Found dependencies: /home/runner/.julia/packages/CondaPkg/0UqYV/CondaPkg.toml<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">    CondaPkg </span>Resolving changes<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span><span class="ansi-green-fg">+ comm</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span><span class="ansi-green-fg">+ ipympl</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span><span class="ansi-green-fg">+ ipython</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span><span class="ansi-green-fg">+ ipywidgets</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span><span class="ansi-green-fg">+ jupyter_client</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span><span class="ansi-green-fg">+ jupyter_kernel_test</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span><span class="ansi-green-fg">+ libstdcxx</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span><span class="ansi-green-fg">+ libstdcxx-ng</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span><span class="ansi-green-fg">+ matplotlib</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span><span class="ansi-green-fg">+ python</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">    CondaPkg </span>Initialising pixi<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">/home/runner/.julia/artifacts/cefba4912c2b400756d043a2563ef77a0088866b/bin/pixi</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">init</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">--format pixi</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>└ <span class="ansi-black-intense-fg">/home/runner/.julia/environments/v1.11/.CondaPkg</span><span class="ansi-yellow-fg">
+│  </span>✔ Created /home/runner/.julia/environments/v1.11/.CondaPkg/pixi.toml<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">    CondaPkg </span>Wrote /home/runner/.julia/environments/v1.11/.CondaPkg/pixi.toml<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">[dependencies]</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">ipython = &#34;*&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">jupyter_kernel_test = &#34;*&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">libstdcxx = &#34;&gt;=3.4,&lt;15.0&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">ipywidgets = &#34;*&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">libstdcxx-ng = &#34;&gt;=3.4,&lt;15.0&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">matplotlib = &#34;&gt;=1&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">jupyter_client = &#34;*&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">ipympl = &#34;*&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">comm = &#34;*&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">    [dependencies.python]</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">    channel = &#34;conda-forge&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">    build = &#34;*cp*&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">    version = &#34;3.13.*, &gt;=3.9,&lt;4&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">[project]</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">name = &#34;.CondaPkg&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">platforms = [&#34;linux-64&#34;]</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">channels = [&#34;conda-forge&#34;]</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">channel-priority = &#34;strict&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>└ <span class="ansi-black-intense-fg">description = &#34;automatically generated by CondaPkg.jl&#34;</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">    CondaPkg </span>Installing packages<span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">/home/runner/.julia/artifacts/cefba4912c2b400756d043a2563ef77a0088866b/bin/pixi</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>│ <span class="ansi-black-intense-fg">install</span><span class="ansi-yellow-fg">
+│  </span><span class="ansi-green-intense-fg ansi-bold">             </span>└ <span class="ansi-black-intense-fg">--manifest-path /home/runner/.julia/environments/v1.11/.CondaPkg/pixi.toml</span><span class="ansi-yellow-fg">
+│  </span>✔ The default environment has been installed.<span class="ansi-yellow-fg">
+└  </span>
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mf">0.01</span><span class="o">:</span><span class="mi">10</span>
+
+<span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">xlabel</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">ylabel</span><span class="p">(</span><span class="s">&quot;sin(x)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_julia_Julia_tutorial_34_0.png" src="../../_images/tutorials_julia_Julia_tutorial_34_0.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Python: Text(23.999999999999993, 0.5, &#39;sin(x)&#39;)
+</pre></div></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../python/jax/jax_distributed_computing.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Distributed Computing in JAX</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../package-specific/korg.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Synthesizing and fitting spectra with Korg</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#just-in-time-compilation-and-performance">just-in-time compilation and performance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-dispatch">multiple dispatch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Custom-type-+-multiple-dispatch">Custom type + multiple dispatch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-linear-algebra-and-broadcasting-(%22vectorization%22)">basic linear algebra and broadcasting (“vectorization”)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#PythonPlot">PythonPlot</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CCA Software Group
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, CCA Software Group.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

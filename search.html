@@ -151,24 +151,50 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python tutorials</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Language-agnostic tutorials</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="tutorials/errors_exceptions_in_python.html">Errors and exceptions in Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/functions_classes_in_python.html">Functions and classes in Python</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="tutorials/JAX/index-JAX.html">Jumping into JAX</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/JAX/0-the_new_python.html">Tutorial 0 - New(er) Patterns in (Scientific) Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/JAX/1-jax_and_autodiff.html">Tutorial 1 - Intro to JAX and Automatic Differentiation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/JAX/2-quax.html">Tutorial 2 - Intro to Quax</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/JAX/3-unxt.html">Tutorial 3 - Intro to Unxt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/general/numerics.html">Scientific computing and numerics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/general/vibe_coding.html">AI tools for software</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="tutorials/python/basics/index.html">Python basics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/python/basics/errors_exceptions_in_python.html">Errors and exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/python/basics/functions_classes_in_python.html">Functions and classes in Python</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/profiling_accelerating_python_code.html">Profiling and accelerating Python code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/uv_tutorial_pointer.html">Using uv</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/virtual_environments_python.html">Virtual environments in Python</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tutorials/python/envs/index.html">Python environments and packaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/python/envs/developing_packages.html">Developing a Python package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/python/envs/using_uv.html">Using uv for Python packaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/python/envs/virtual_environments_python.html">Using virtual environments for Python</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tutorials/python/accelerating/index.html">Profiling and accelerating Python</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/python/accelerating/profiling_accelerating_python_code.html">Profiling and accelerating Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/python/accelerating/numba.html">Using Numba to accelerate Python</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tutorials/python/jax/index.html">JAX</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/python/jax/Intro-to-JAX.html">Intro to JAX</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="tutorials/python/jax/JAX_set/index.html">Series: Jumping into JAX</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/python/jax/JAX_set/0-the_new_python.html">Tutorial 0 - New(er) Patterns in (Scientific) Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/python/jax/JAX_set/1-jax_and_autodiff.html">Tutorial 1 - Intro to JAX and Automatic Differentiation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/python/jax/JAX_set/2-quax.html">Tutorial 2 - Intro to Quax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/python/jax/JAX_set/3-unxt.html">Tutorial 3 - Intro to Unxt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/python/jax/jax_distributed_computing.html">Distributed Computing in JAX</a></li>
+</ul>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Julia tutorials</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="tutorials/Julia_tutorial.html">Julia crash course</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/julia/Julia_tutorial.html">Julia crash course</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Package-specific tutorials</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tutorials/package-specific/korg.html">Synthesizing and fitting spectra with Korg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/package-specific/MeshoidTest.html">Simulation analysis with meshoid</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="nav bd-sidenav">
