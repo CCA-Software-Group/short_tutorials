@@ -35,6 +35,15 @@ jobs:
           pip install setuptools --upgrade
           pip install .[test,docs]
 
+      - name: Set up Julia
+        uses: julia-actions/setup-julia@v1
+        with:
+          version: '1.11'
+      
+      - name: Install Julia kernel for Jupyter
+        run: |
+          julia -e 'using Pkg; Pkg.add("IJulia"); using IJulia; IJulia.installkernel("Julia 1.11")'
+    
       - name: Make docs
         run: |
           cd docs
